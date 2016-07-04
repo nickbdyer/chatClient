@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chatClient.iml" filepath="$PROJECT_DIR$/.idea/modules/chatClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chatClient_main.iml" filepath="$PROJECT_DIR$/.idea/modules/chatClient_main.iml" group="chatClient" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/chatClient_test.iml" filepath="$PROJECT_DIR$/.idea/modules/chatClient_test.iml" group="chatClient" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/chatServer.iml" filepath="$PROJECT_DIR$/.idea/modules/chatServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/chatServer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/chatServer_main.iml" group="chatServer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/chatServer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/chatServer_test.iml" group="chatServer" />
