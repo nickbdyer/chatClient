@@ -1,10 +1,10 @@
-package uk.nickbdyer.chatServer;
+package uk.nickbdyer.chatClient;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class EchoServerTest {
+public class EchoClientTest {
 
     @Test
     public void testSuiteTest() {
