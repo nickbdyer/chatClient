@@ -22,7 +22,6 @@ public class ChatClientTest {
         server = new ServerSocket(4444);
         outContent = new ByteArrayOutputStream();
         mockSocket = new MockSocket(outContent);
-
     }
 
     @After
