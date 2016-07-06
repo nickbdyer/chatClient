@@ -1,19 +1,20 @@
 package uk.nickbdyer.chatclient;
 
-import java.io.OutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 
 public class ChatClient {
 
-    private Socket socket;
     private PrintStream output;
 
-    public ChatClient(Socket socket, OutputStream output) {
-        this.socket = socket;
-        this.output = new PrintStream(output);
+    public ChatClient(Socket socket) {
+        try {
+            this.output = new PrintStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 
     public void sendMessage(String message) {
         output.println(message);
