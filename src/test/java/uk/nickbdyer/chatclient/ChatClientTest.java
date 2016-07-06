@@ -14,7 +14,16 @@ public class ChatClientTest {
     public void clientCanConnectToServerSocket() throws IOException {
         new ServerSocket(4444);
 
-        Socket clientSocket = new ChatClient().connect("localhost", 4444);
+        Socket clientSocket = new ChatClient("localhost", 4444).connect();
+
+        assertTrue(clientSocket.isConnected());
+    }
+
+    @Test
+    public void clientCanConnectToAnotherServer() throws IOException {
+        new ServerSocket(5555);
+
+        Socket clientSocket = new ChatClient("localhost", 5555).connect();
 
         assertTrue(clientSocket.isConnected());
     }
