@@ -5,9 +5,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -36,8 +34,9 @@ public class ChatClientTest {
 
     @Test
     public void clientCanSendHelloMessageToServerSocket() throws IOException {
-        ChatClient client = new ChatClient(mockSocket.getOutputStream());
-        client.sendMessage("Hello");
+        InputStream in = new ByteArrayInputStream("Hello".getBytes());
+        ChatClient client = new ChatClient(in, mockSocket.getOutputStream());
+        client.sendMessage();
         assertEquals("Hello\n", outContent.toString());
     }
 
