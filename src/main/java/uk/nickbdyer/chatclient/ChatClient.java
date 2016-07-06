@@ -1,24 +1,22 @@
 package uk.nickbdyer.chatclient;
 
-import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.Socket;
 
 public class ChatClient {
 
-    private String hostName;
-    private int portNumber;
+    private Socket socket;
+    private PrintStream output;
 
-    public ChatClient(String hostName, int portNumber) {
-        this.hostName = hostName;
-        this.portNumber = portNumber;
+    public ChatClient(Socket socket, OutputStream output) {
+        this.socket = socket;
+        this.output = new PrintStream(output);
     }
 
-    public Socket connect() {
-        try {
-            return new Socket(hostName, portNumber);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not connect to ServerSocket.");
-        }
+
+    public void sendMessage(String message) {
+        output.println(message);
     }
 }
 
