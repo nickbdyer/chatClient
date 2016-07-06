@@ -17,7 +17,7 @@ public class ChatClient {
         try {
             return new Socket(hostName, portNumber);
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("Could not connect to ServerSocket.");
         }
     }
 }
