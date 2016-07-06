@@ -43,5 +43,22 @@ public class MessageDispatcherTest {
         assertEquals("\n", out.toString());
     }
 
+    @Test
+    public void outputsHelloWhenTheInputIsHello() {
+        InputStream in = new ByteArrayInputStream("Hello".getBytes());
+        MessageDispatcher dispatcher = new MessageDispatcher(in, out);
+
+        dispatcher.sendInputToOutput();
+
+        assertEquals("Hello\n", out.toString());
+    }
+
+    @Test(expected=RuntimeException.class)
+    public void throwsExceptionIfInputStreamIsUnreadable() {
+        InputStream in = new UnReadableInputStream();
+        MessageDispatcher dispatcher = new MessageDispatcher(in, out);
+
+        dispatcher.sendInputToOutput();
+    }
 
 }

@@ -10,7 +10,6 @@ public class MessageDispatcher {
     public MessageDispatcher(InputStream inputStream, OutputStream outputStream) {
         this.input = new BufferedReader(new InputStreamReader(inputStream));
         this.output = new PrintStream(outputStream);
-
     }
 
     public void sendInputToOutput() {
@@ -20,7 +19,7 @@ public class MessageDispatcher {
                 output.println(message);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
 }
