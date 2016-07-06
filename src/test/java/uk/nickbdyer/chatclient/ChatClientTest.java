@@ -36,21 +36,21 @@ public class ChatClientTest {
 
     @Test
     public void clientCanSendHelloMessageToServerSocket() throws IOException {
-        ChatClient client = new ChatClient(mockSocket);
+        ChatClient client = new ChatClient(mockSocket.getOutputStream());
         client.sendMessage("Hello");
         assertEquals("Hello\n", outContent.toString());
     }
 
     @Test
     public void clientCanSendGoodByeMessageToServerSocket() throws IOException {
-        ChatClient client = new ChatClient(mockSocket);
+        ChatClient client = new ChatClient(mockSocket.getOutputStream());
         client.sendMessage("GoodBye");
         assertEquals("GoodBye\n", outContent.toString());
     }
 
     @Test
     public void clientCanSendMultipleMessagesToServerSocket() throws IOException {
-        ChatClient client = new ChatClient(mockSocket);
+        ChatClient client = new ChatClient(mockSocket.getOutputStream());
         client.sendMessage("Hello\nGoodBye");
         assertEquals("Hello\nGoodBye\n", outContent.toString());
     }
@@ -58,7 +58,7 @@ public class ChatClientTest {
     @Ignore //Test to be moved to validator when built responsibility is not here.
     @Test(expected = RuntimeException.class)
     public void ifThereIsNoServerRunningAtTheHostAndPortGivenAnExceptionWillBeThrown() throws IOException {
-        ChatClient client = new ChatClient(new Socket("localhost", 5555));
+        ChatClient client = new ChatClient(new Socket("localhost", 5555).getOutputStream());
     }
 
 }
