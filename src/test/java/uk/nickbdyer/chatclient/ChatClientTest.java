@@ -42,8 +42,9 @@ public class ChatClientTest {
 
     @Test
     public void clientCanSendGoodByeMessageToServerSocket() throws IOException {
-        ChatClient client = new ChatClient(mockSocket.getOutputStream());
-        client.sendMessage("GoodBye");
+        InputStream in = new ByteArrayInputStream("GoodBye".getBytes());
+        ChatClient client = new ChatClient(in, mockSocket.getOutputStream());
+        client.sendMessage();
         assertEquals("GoodBye\n", outContent.toString());
     }
 

@@ -21,7 +21,11 @@ public class ChatClient {
     }
 
     public void sendMessage() {
-        output.println("Hello");
+        try {
+            output.println(input.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
