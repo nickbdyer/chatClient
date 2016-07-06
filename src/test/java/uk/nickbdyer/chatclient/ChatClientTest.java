@@ -33,10 +33,26 @@ public class ChatClientTest {
     }
 
     @Test
+    public void clientCanSendLessThanNoMessageToServerSocket() throws IOException {
+        InputStream in = new ByteArrayInputStream("".getBytes());
+        ChatClient client = new ChatClient(in, mockSocket.getOutputStream());
+        client.chat();
+        assertEquals("", outContent.toString());
+    }
+
+    @Test
+    public void clientCanSendNoMessageToServerSocket() throws IOException {
+        InputStream in = new ByteArrayInputStream("\n".getBytes());
+        ChatClient client = new ChatClient(in, mockSocket.getOutputStream());
+        client.chat();
+        assertEquals("\n", outContent.toString());
+    }
+
+    @Test
     public void clientCanSendHelloMessageToServerSocket() throws IOException {
         InputStream in = new ByteArrayInputStream("Hello".getBytes());
         ChatClient client = new ChatClient(in, mockSocket.getOutputStream());
-        client.sendMessage();
+        client.chat();
         assertEquals("Hello\n", outContent.toString());
     }
 
@@ -44,21 +60,23 @@ public class ChatClientTest {
     public void clientCanSendGoodByeMessageToServerSocket() throws IOException {
         InputStream in = new ByteArrayInputStream("GoodBye".getBytes());
         ChatClient client = new ChatClient(in, mockSocket.getOutputStream());
-        client.sendMessage();
+        client.chat();
         assertEquals("GoodBye\n", outContent.toString());
     }
 
     @Test
     public void clientCanSendMultipleMessagesToServerSocket() throws IOException {
-        ChatClient client = new ChatClient(mockSocket.getOutputStream());
-        client.sendMessage("Hello\nGoodBye");
+        InputStream in = new ByteArrayInputStream("Hello\nGoodBye".getBytes());
+        ChatClient client = new ChatClient(in, mockSocket.getOutputStream());
+        client.chat();
         assertEquals("Hello\nGoodBye\n", outContent.toString());
     }
 
     @Ignore //Test to be moved to validator when built responsibility is not here.
     @Test(expected = RuntimeException.class)
     public void ifThereIsNoServerRunningAtTheHostAndPortGivenAnExceptionWillBeThrown() throws IOException {
-        ChatClient client = new ChatClient(new Socket("localhost", 5555).getOutputStream());
+        InputStream in = new ByteArrayInputStream("Hello".getBytes());
+        ChatClient client = new ChatClient(in, new Socket("localhost", 5555).getOutputStream());
     }
 
 }
