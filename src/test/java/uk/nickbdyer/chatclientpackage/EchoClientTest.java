@@ -1,4 +1,4 @@
-package uk.nickbdyer.chatClient;
+package uk.nickbdyer.chatclientpackage;
 
 import org.junit.Test;
 
