@@ -33,5 +33,15 @@ public class MessageDispatcherTest {
     }
 
 
+    @Test
+    public void outputsANewLineWhenInputIsEmptyStringWithNewLine() {
+        InputStream in = new ByteArrayInputStream("\n".getBytes());
+        MessageDispatcher dispatcher = new MessageDispatcher(in, out);
+
+        dispatcher.sendInputToOutput();
+
+        assertEquals("\n", out.toString());
+    }
+
 
 }
