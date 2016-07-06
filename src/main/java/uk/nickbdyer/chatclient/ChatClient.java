@@ -1,6 +1,6 @@
 package uk.nickbdyer.chatclient;
 
-public class Client {
+public class ChatClient {
 
 }
 
