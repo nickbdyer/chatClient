@@ -71,11 +71,5 @@ public class ChatClientTest {
         assertEquals("Hello\nGoodBye\n", outContent.toString());
     }
 
-    @Ignore //Test to be moved to validator when built responsibility is not here.
-    @Test(expected = RuntimeException.class)
-    public void ifThereIsNoServerRunningAtTheHostAndPortGivenAnExceptionWillBeThrown() throws IOException {
-        InputStream in = new ByteArrayInputStream("Hello".getBytes());
-        ChatClient client = new ChatClient(in, new Socket("localhost", 5555).getOutputStream());
-    }
 
 }

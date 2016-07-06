@@ -5,6 +5,7 @@ import java.net.Socket;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new ChatClient(System.in, new Socket("localhost", Validator.getPort(args)).getOutputStream()).chat();
+        Validator validator = new Validator(args);
+        new ChatClient(System.in, new Socket(validator.getHost(), validator.getPort()).getOutputStream()).chat();
     }
 }
