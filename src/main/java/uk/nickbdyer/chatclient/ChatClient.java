@@ -19,7 +19,7 @@ public class ChatClient {
                 output.println(message);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

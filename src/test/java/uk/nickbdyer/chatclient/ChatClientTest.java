@@ -71,5 +71,11 @@ public class ChatClientTest {
         assertEquals("Hello\nGoodBye\n", outContent.toString());
     }
 
+    @Test(expected = RuntimeException.class)
+    public void clientWillThrowRuntimeExceptionIfItCannotReadTheStream() {
+        InputStream in = new UnReadableInputStream();
+        ChatClient client = new ChatClient(in, mockSocket.getOutputStream());
+        client.chat();
+    }
 
 }
