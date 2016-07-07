@@ -1,40 +1,26 @@
 package uk.nickbdyer.chatclient;
 
+import java.io.*;
+
 public class ChatClient {
 
+    private BufferedReader input;
+    private PrintStream output;
+
+    public ChatClient(InputStream input, OutputStream output) {
+        this.input = new BufferedReader(new InputStreamReader(input));
+        this.output = new PrintStream(output);
+    }
+
+    public void chat() {
+        try {
+            String message;
+            while ((message = input.readLine()) != null) {
+                output.println(message);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
-//public class EchoClient {
-//    public static void main(String[] args) throws IOException {
-//
-//        if (args.length != 2) {
-//            System.err.println(
-//                    "Usage: java EchoClient <host name> <port number>");
-//            System.exit(1);
-//        }
-//
-//        String hostName = args[0];
-//        int portNumber = Integer.parseInt(args[1]);
-//
-//        try (
-//                Socket echoSocket = new Socket(hostName, portNumber);
-//                PrintWriter out =
-//                        new PrintWriter(echoSocket.getOutputStream(), true);
-//                BufferedReader stdIn =
-//                        new BufferedReader(
-//                                new InputStreamReader(System.in))
-//        ) {
-//            String userInput;
-//            while ((userInput = stdIn.readLine()) != null) {
-//                out.println(userInput);
-//            }
-//        } catch (UnknownHostException e) {
-//            System.err.println("Don't know about host " + hostName);
-//            System.exit(1);
-//        } catch (IOException e) {
-//            System.err.println("Couldn't get I/O for the connection to " +
-//                    hostName);
-//            System.exit(1);
-//        }
-//    }
-//}
